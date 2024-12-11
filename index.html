@@ -17,8 +17,8 @@
         }
 
         body {
+            --color: #DF2E38;
             min-height: 100vh;
-            background: #F9E8D9;
             padding: 20px;
             font-family: "Monsieur La Doulaise", cursive;
             font-weight: 400;
@@ -33,8 +33,23 @@
             font-style: normal;
             font-variation-settings:
                 "wdth" 100;
+            background-color: white;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, var(--color) 35px, var(--color) 70px);
         }
 
+        .postzegel{
+            position:absolute;
+            width:100px;
+            height:100px;
+            right:0;
+            top:0;
+        }
+        
+        .postzegel img{
+            width:100%;
+            height:100%;
+            object-fit: contain;
+        }
         main {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -43,6 +58,7 @@
             min-height: calc(100vh - 40px);
             border-radius: 5px;
             max-width: 1000px;
+            background: white;
         }
 
         .wrapper {
@@ -64,8 +80,11 @@
             flex-direction: column;
             padding: 20px;
             gap: 20px;
+            position:relative;
         }
-
+        .text p{
+            max-width:55ch;
+        }
         .tree {
             position: relative;
             width: 400px;
@@ -106,20 +125,16 @@
             top: 75%;
             left: 50%;
             transform: translateX(-50%);
-            z-index: -1;
+            z-index: 0;
         }
 
         .star {
-            width: 80px;
-            aspect-ratio: 1/1;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            background: linear-gradient(to bottom right, hsl(46, 100%, 62%), hsl(46, 100%, 90%));
+            font-size: 100px;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             z-index: 4;
-            top: -30px;
-            filter: brightness(120%);
+            top: -60px;
         }
 
 
@@ -130,7 +145,7 @@
             border-radius: 50%;
             border: 2px solid hsl(46, 100%, 62%);
             left: 25%;
-            top: -100px;
+            top: -90px;
             opacity: 0.5;
             animation-name: bling;
             animation-duration: 2s;
@@ -198,8 +213,8 @@
             content: "☃️";
         }
 
-        .list li:nth-of-type(5)::before{
-            content:"🌟";
+        .list li:nth-of-type(5)::before {
+            content: "🌟";
         }
 
 
@@ -244,6 +259,10 @@
             .tree {
                 transform: scale(0.8);
             }
+
+            .postzegel{
+                transform: scale(0.8);
+            }
         }
     </style>
 </head>
@@ -254,7 +273,9 @@
             <figure class="tree">
                 <div class="helo"></div>
                 <a href="https://www.hellofresh.nl/recipes/indiase-dahl-met-zoete-aardappel-5d6681761a32f5000a3da7a7">
-                    <div class="star"></div>
+                    <div class="star">
+                        🌟
+                    </div>
                 </a>
                 <div class="base base--top"></div>
                 <div class="base base--second"></div>
@@ -279,6 +300,9 @@
             </figure>
         </div>
         <div class="text">
+            <figure class="postzegel">
+                <img src="https://shop.postnl.nl/media/catalog/product/cache/5ab0388cff152fb7e87f8a9b4614e2e0/1/7/1729503529_dec-zegel-03.jpg" alt="postzegel">
+            </figure>
             <h1>Beste <span id="colleague"></span></h1>
             <p>Allereerst wil ik je bedanken, bedanken voor het superwarme welkom. Vanaf dag 1 voelde ik mij thuis in
                 het team en dat komt mede door jou! Ook in de hele afdeling K&O word ik met open armen ontvangen, en dat
