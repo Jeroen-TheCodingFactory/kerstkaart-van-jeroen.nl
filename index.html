@@ -37,12 +37,12 @@
 
         main {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 2fr;
             grid-template-rows: 1fr;
             border: 20px solid #527853;
             min-height: calc(100vh - 40px);
             border-radius: 5px;
-            width: 1000px;
+            max-width: 1000px;
         }
 
         .wrapper {
@@ -61,10 +61,9 @@
             font-weight: 700;
             font-style: normal;
             display: flex;
-            align-items: center;
             flex-direction: column;
             padding: 20px;
-            gap: 30px;
+            gap: 20px;
         }
 
         .tree {
@@ -150,8 +149,8 @@
             transition: all 0.8s;
         }
 
-        .ball:hover{
-            filter:brightness(120%);
+        .ball:hover {
+            filter: brightness(120%);
         }
 
         .ball--1 {
@@ -178,6 +177,34 @@
             bottom: 25%;
         }
 
+        .list {
+            list-style-position: inside;
+            list-style-type: none;
+        }
+
+        .list li::before {
+            content: "🎅";
+        }
+
+        .list li:nth-of-type(2)::before {
+            content: "🎁";
+        }
+
+        .list li:nth-of-type(3)::before {
+            content: "❄️";
+        }
+
+        .list li:nth-of-type(4)::before {
+            content: "☃️";
+        }
+
+        .list li:nth-of-type(5)::before{
+            content:"🌟";
+        }
+
+
+
+
         @keyframes bling {
             from {
                 opacity: 0;
@@ -189,6 +216,35 @@
                 transform: scale(1);
             }
         }
+
+        @media screen and (max-width:800px) {
+            body {
+                padding: 0;
+            }
+
+            main {
+                grid-template-columns: 1fr;
+                grid-template-rows: 500px;
+                border-radius: 5px;
+                border-radius: 0;
+                border: none;
+                padding: 10px;
+            }
+
+            .text {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width:600px) {
+            body {
+                font-size: 14px;
+            }
+
+            .tree {
+                transform: scale(0.8);
+            }
+        }
     </style>
 </head>
 
@@ -197,29 +253,64 @@
         <div class="wrapper">
             <figure class="tree">
                 <div class="helo"></div>
-                <div class="star"></div>
+                <a href="https://www.hellofresh.nl/recipes/indiase-dahl-met-zoete-aardappel-5d6681761a32f5000a3da7a7">
+                    <div class="star"></div>
+                </a>
                 <div class="base base--top"></div>
                 <div class="base base--second"></div>
                 <div class="base base--third"></div>
-                <div class="ball ball--1"></div>
-                <div class="ball ball--2"></div>
-                <div class="ball ball--3"></div>
-                <div class="ball ball--4"></div>
+                <a href="https://branderijjoost.nl/koffie/blends/koffie-no.32-robuust-750g/">
+                    <div class="ball ball--1">
+                    </div>
+                </a>
+                <a
+                    href="https://www.disneyplus.com/nl-nl/movies/tim-burtons-the-nightmare-before-christmas/5GjwOj5Rkpz2">
+                    <div class="ball ball--2">
+                    </div>
+                </a>
+                <a href="" id="randomLink">
+                    <div class="ball ball--3">
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=Mpn-MC2B6Zc">
+                    <div class="ball ball--4"></div>
+                </a>
                 <div class="trunk"></div>
             </figure>
         </div>
         <div class="text">
             <h1>Beste <span id="colleague"></span></h1>
             <p>Allereerst wil ik je bedanken, bedanken voor het superwarme welkom. Vanaf dag 1 voelde ik mij thuis in
-                het team en dat komt mede door jou! </p>
+                het team en dat komt mede door jou! Ook in de hele afdeling K&O word ik met open armen ontvangen, en dat
+                geeft een fijn gevoel. </p>
             <p>Ik hoop dat je deze feestdagen omringt wordt door mensen die jou minstens net zo warm gevoel geven.
                 Omringt door geliefden, lekker eten en een (lekker ruikende) kerstboom. Er is toch bijna niets mooier
                 dan dat? </p>
+            <p>Mocht je nog opzoek zijn naar wat tips om je te vermaken tijdens deze mooie tijd kan je hieronder kijken:
+            </p>
+            <ul class="list">
+                <li>Klik op de rode kerstbal voor mijn favoriete koffie (voor nu...).</li>
+                <li>Klik op de blauwe kerstbal voor mijn favoriete kerstfilm.</li>
+                <li>Klik op de gele kerstbal voor een van mijn top 4 films ooit. De film die je krijgt is willekeurig,
+                    refresh de pagina en klik opnieuw voor een van de andere (als je gelukt hebt!). </li>
+                <li>Klik op de oranje kerstbal voor de trailer van mijn favoriete game. </li>
+                <li>Klik op de ster voor een heerlijk recept dat ik vaak voor mijn famillie kook met kerst.</li>
+            </ul>
+            <p>Heel veel liefs en tot volgend jaar!</p>
         </div>
     </main>
     <script>
-        document.getElementById("colleague").innerText = window.location.search.split("collega=")[1];
 
+        let name = window.location.search.split("collega=")[1] + ",";
+        if (name === undefined || name === "") {
+            name = "collega,"
+        }
+
+        document.getElementById("colleague").innerText = name;
+
+        const movies = ["https://letterboxd.com/film/gladiator-2000/", "https://letterboxd.com/film/no-dogs-or-italians-allowed/", "https://letterboxd.com/film/alien/", "https://letterboxd.com/film/the-iron-claw-2023/"];
+        const random = Math.floor(Math.random() * 4);
+        document.getElementById("randomLink").href = movies[random];
     </script>
 </body>
 
